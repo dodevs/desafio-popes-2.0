@@ -1,0 +1,19 @@
+{
+  "name": "express_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dodevs/desafio-popes-2.0.git"
+  },
+  "author": "douglas silva douglass.sousa@outlook.com.br",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/dodevs/desafio-popes-2.0/issues"
+  },
+  "homepage": "https://github.com/dodevs/desafio-popes-2.0#readme"
+}
