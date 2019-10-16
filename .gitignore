@@ -1,0 +1,5 @@
+#node
+express_server/node_modules
+
+#mongo data
+mongo-data
