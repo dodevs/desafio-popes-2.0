@@ -19,7 +19,8 @@ const SwitchSchema = new Schema({
         type: String,
         required: true
     },
-    portas: [ PortSchema ]
+    portas: [PortSchema]
 })
 
-module.exports = mongoose.model('Port', PortSchema);
+mongoose.model('Port', PortSchema);
+module.exports = mongoose.model('Switch', SwitchSchema);
