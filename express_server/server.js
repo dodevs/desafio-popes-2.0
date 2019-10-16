@@ -1,7 +1,7 @@
 const app = require('express')(), port = 5000;
 
 const mongoose = require('mongoose');
-require('./api/models/portModel');
+require('./api/models/swichModel');
 
 const bodyParser = require('body-parser');
 
