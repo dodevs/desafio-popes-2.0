@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  mongo:
+    container_name: mongo
+    restart: always
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+  
+  express:
+    container_name: server
+    build: express_server
+    command: npm run devstart
+    volumes:
+      - ./express_server:/usr/app
+      - /usr/app/node_modules
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - mongodb://mongo:27017/desafio
