@@ -23,4 +23,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGODB_URL: mongodb://mongo:27017/desafio
+      MONGODB_URL: mongodb://mongo:27017/desafio
+
+volumes:
+  mongo-data: {}
