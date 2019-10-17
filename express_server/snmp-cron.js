@@ -7,7 +7,7 @@ const nomeOid = [1, 3, 6, 1, 2, 1, 1, 1, 0];
 const porta01Oid = [1, 3, 6, 1, 2, 1, 2, 2, 1, 8, 1001];
 const porta02Oid = [1, 3, 6, 1, 2, 1, 2, 2, 1, 8, 1002];
 
-var oidsDict;
+var oidsDict = {};
 oidsDict[nomeOid] = "nome";
 oidsDict[porta01Oid] = "porta01";
 oidsDict[porta02Oid] = "porta02";
@@ -22,7 +22,7 @@ var session = new snmp.Session({
 function startCron() {
     cron.schedule("*/1 * * * *", () => {
         session.getAll({ oids: [nomeOid, porta01Oid, porta02Oid] }, function (error, varbinds) {
-            let switV;
+            let switV = {};
             varbinds.forEach(function (vb) {
                 switV[oidsDict[vb.oid]] = vb.value;
             })
