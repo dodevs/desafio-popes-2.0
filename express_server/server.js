@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => {
-    snmpcron(); // Alimenta o banco de dados a cada 1 minuto
+    snmpcron.start(); // Alimenta o banco de dados a cada 1 minuto
 
     app.use(bodyParser.json());
 
