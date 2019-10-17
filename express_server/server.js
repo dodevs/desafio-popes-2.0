@@ -1,7 +1,7 @@
 const app = require('express')(), port = 5000;
 
 const mongoose = require('mongoose');
-require('./api/models/swichModel');
+require('./api/models/switchModel');
 const snmpcron = require('./snmp-cron');
 
 const bodyParser = require('body-parser');
