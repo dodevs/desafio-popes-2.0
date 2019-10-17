@@ -4,10 +4,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SwitchSchema = new Schema({
-    timestamp: {
-        type: Date,
-        required: true
-    },
     nome: {
         type: String,
         required: true
@@ -21,5 +17,7 @@ const SwitchSchema = new Schema({
         required: true
     }
 })
+
+SwitchSchema.set('timestamps', true);
 
 module.exports = mongoose.model('Switch', SwitchSchema);
