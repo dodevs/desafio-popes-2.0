@@ -4,34 +4,35 @@ const mongoose = require('mongoose');
 const Swit = mongoose.model('Switch');
 
 exports.switchGetAll = function (req, res) {
-    Swit.find({}, function(error, swit) {
-        if(error)
+    Swit.find({}, function (error, result) {
+        console.log(result);
+        if (error)
             res.send('error')
-        res.json(swit);
+        res.json(result);
     })
 }
 
 exports.switchCreate = function (req, res) {
     let newSwit = new Swit(req.body);
-    newSwit.save(function (err, swit) {
+    newSwit.save(function (err, result) {
         if (err)
             res.send(err);
-        res.json(swit);
+        res.json(result);
     })
 }
 
 exports.switchUpdate = function (req, res) {
-    Swit.findByIdAndUpdate(req.params._id, req.body, function (err, swit) {
+    Swit.findByIdAndUpdate(req.params._id, req.body, function (err, result) {
         if (err)
             res.send(err);
-        res.json(swit);
+        res.json(result);
     })
 }
 
 exports.switchDelete = function (req, res) {
-    Swit.findByIdAndDelete(req.params._id, function (err, swit) {
+    Swit.findByIdAndDelete(req.params._id, function (err, result) {
         if (err)
             res.send(err);
-        res.json(swit._id);
+        res.json(result._id);
     })
 }

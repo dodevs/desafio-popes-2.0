@@ -17,7 +17,6 @@ module.exports = function (server) {
         console.log('quase');
         switReceived
             .then(value => {
-                console.log(value);
                 const newSwitch = new Swit(value);
                 newSwitch.save((err, swit) => {
                     io.emit("switchCurrent", swit);
