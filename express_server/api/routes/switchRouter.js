@@ -11,7 +11,7 @@ module.exports = function (app) {
         .get(switchHistoricController.switchGetAll)
         .post(switchHistoricController.switchCreate)
 
-    app.route('historic/:id')
+    app.route('/historic/:id')
         .put(switchHistoricController.switchUpdate)
         .delete(switchHistoricController.switchDelete);
 
