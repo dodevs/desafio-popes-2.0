@@ -21,7 +21,7 @@ exports.switchCreate = function (req, res) {
 }
 
 exports.switchUpdate = function (req, res) {
-    Swit.findByIdAndUpdate(req.params._id, req.body, function (err, result) {
+    Swit.findByIdAndUpdate(req.params.id, req.body, function (err, result) {
         if (err)
             res.send(err);
         res.json(result);
@@ -29,7 +29,7 @@ exports.switchUpdate = function (req, res) {
 }
 
 exports.switchDelete = function (req, res) {
-    Swit.findByIdAndDelete(req.params._id, function (err, result) {
+    Swit.findByIdAndDelete(req.params.id, function (err, result) {
         if (err)
             res.send(err);
         res.json(result._id);

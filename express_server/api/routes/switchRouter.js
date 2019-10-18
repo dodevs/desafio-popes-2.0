@@ -10,6 +10,8 @@ module.exports = function (app) {
     app.route('/historic')
         .get(switchHistoricController.switchGetAll)
         .post(switchHistoricController.switchCreate)
+
+    app.route('historic/:id')
         .put(switchHistoricController.switchUpdate)
         .delete(switchHistoricController.switchDelete);
 
