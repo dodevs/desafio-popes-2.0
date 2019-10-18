@@ -5,10 +5,10 @@ module.exports = function (app) {
     const switchHistoricController = require('../controllers/switchHistoricController');
 
     app.route('/')
-        .get(switchCurrentController.switchGet)
+        .get(switchCurrentController.switchGet);
 
     app.route('/:attr')
-        .get(switchCurrentController.switchGetBy)
+        .get(switchCurrentController.switchGetBy);
 
     app.route('/historic')
         .get(switchHistoricController.switchGetAll)

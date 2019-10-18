@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Swit = mongoose.model('Switch');
 
 exports.switchGetAll = function (req, res) {
-    Swit.find(function(error, swit) {
+    Swit.find({}, function(error, swit) {
         if(error)
             res.send('error')
         res.json(swit);
