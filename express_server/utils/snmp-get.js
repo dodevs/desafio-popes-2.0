@@ -10,27 +10,33 @@ var session = new snmp.Session({
     community: 'd3s4f10'
 })
 
-module.exports.get = async function() {
-    let switV = {};
-
-    await session.getAll({ oids: [nomeOid, porta01Oid, porta02Oid] }, function (error, varbinds) {        
-        varbinds.forEach(function (vb) {
-            switch (vb.oid) {
-                case nomeOid:
-                    switV['nome'] = vb.value;
-                    break;
-                case porta01Oid:
-                    switV['porta01'] = vb.value == 1 ? 'Up' : 'Down';
-                    break;
-                case porta02Oid:
-                    switV['porta02'] = vb.value == 1 ? 'Up' : 'Down';
-                    break;
-                default:
-                    break;
-            }
-        })        
-    })
-
-    return switV;
+module.exports.get = function() {
+    return new Promise(
+        function(resolve, reject) {
+            session.getAll({ oids: [nomeOid, porta01Oid, porta02Oid] }, function (error, varbinds) {
+                if(error)
+                    reject(error);
+                
+                let switV = {};
+                varbinds.forEach(function (vb) {
+                    switch (vb.oid) {
+                        case nomeOid:
+                            switV['nome'] = vb.value;
+                            break;
+                        case porta01Oid:
+                            switV['porta01'] = vb.value == 1 ? 'Up' : 'Down';
+                            break;
+                        case porta02Oid:
+                            switV['porta02'] = vb.value == 1 ? 'Up' : 'Down';
+                            break;
+                        default:
+                            break;
+                    }
+                })  
+                
+                resolve(switV);
+            })
+        }
+    )
 }
 

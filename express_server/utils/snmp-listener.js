@@ -8,15 +8,20 @@ const Swit = mongoose.model("Switch");
 // socket
 const socketio = require('socket.io');
 
-module.exports = function(server) {
+module.exports = function (server) {
     const io = socketio(server);
 
     cron.schedule("*/10 * * * * *", () => {
-	const switReceived = snmpget.get();
-	console.log(switReceived);
-        const newSwitch = new Swit(switReceived);
-        newSwitch.save((err, swit) => {	    
-            io.emit("switchCurrent", swit);
-        })
+        const switReceived = snmpget.get();
+        switReceived
+            .then(value => {
+                const newSwitch = new Swit(value);
+                newSwitch.save((err, swit) => {
+                    io.emit("switchCurrent", swit);
+                })
+            })
+            .catch(reason => {
+                io.emit("switchCurrent", "Error");
+            })
     })
 }
