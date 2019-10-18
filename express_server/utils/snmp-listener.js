@@ -14,7 +14,6 @@ module.exports = function (server) {
 
     cron.schedule(crontime, () => {
         const switReceived = snmpget.get();
-        console.log('quase');
         switReceived
             .then(value => {
                 const newSwitch = new Swit(value);
@@ -23,7 +22,6 @@ module.exports = function (server) {
                 })
             })
             .catch(reason => {
-                console.log("errrrorrr");
                 io.emit("switchCurrent", "Error");
             })
     })

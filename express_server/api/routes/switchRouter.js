@@ -7,12 +7,12 @@ module.exports = function (app) {
     app.route('/')
         .get(switchCurrentController.switchGet);
 
-    app.route('/:attr')
-        .get(switchCurrentController.switchGetBy);
-
     app.route('/historic')
         .get(switchHistoricController.switchGetAll)
         .post(switchHistoricController.switchCreate)
         .put(switchHistoricController.switchUpdate)
         .delete(switchHistoricController.switchDelete);
+
+    app.route('/:attr')
+        .get(switchCurrentController.switchGetBy);
 }
