@@ -23,4 +23,5 @@ db.once('open', () => {
     const server = app.listen(port);
 
     snmplistener(server);
+    console.log('final');
 })
