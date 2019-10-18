@@ -11,7 +11,7 @@ const socketio = require('socket.io');
 module.exports = function (server) {
     const io = socketio(server);
 
-    cron.schedule("*/1 * * * * *", () => {
+    cron.schedule(process.env.CRONTIME, () => {
         const switReceived = snmpget.get();
         console.log('quase');
         switReceived
