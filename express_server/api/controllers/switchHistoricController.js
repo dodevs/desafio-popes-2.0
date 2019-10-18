@@ -21,7 +21,7 @@ exports.switchCreate = function (req, res) {
 }
 
 exports.switchUpdate = function (req, res) {
-    Swit.findByIdAndUpdate(req.params.id, req.body, function (err, result) {
+    Swit.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, result) {
         if (err)
             res.send(err);
         res.json(result);
