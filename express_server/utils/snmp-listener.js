@@ -1,4 +1,5 @@
 const cron = require("node-cron");
+const crontime = require('../constants').crontime;
 const snmpget = require('./snmp-get');
 
 // Mongo 
@@ -11,7 +12,7 @@ const socketio = require('socket.io');
 module.exports = function (server) {
     const io = socketio(server);
 
-    cron.schedule(process.env.CRONTIME, () => {
+    cron.schedule(crontime, () => {
         const switReceived = snmpget.get();
         console.log('quase');
         switReceived

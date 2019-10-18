@@ -24,7 +24,6 @@ services:
       - mongo
     environment:
       MONGODB_URL: mongodb://mongo:27017/desafio
-      CRONTIME: */10 * * * * *
 
 volumes:
   mongo-data: {}
