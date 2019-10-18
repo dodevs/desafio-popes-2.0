@@ -15,24 +15,17 @@ var session = new snmp.Session({
     community: 'd3s4f10'
 })
 
-module.exports.get = function() {
+module.exports.get = function () {
     return new Promise(
-        function(resolve, reject) {
+        function (resolve, reject) {
             session.getAll({ oids: [nomeOid, porta01Oid, porta02Oid] }, function (error, varbinds) {
-                if(error)
-                    reject(error);                
-                
+                if (error)
+                    reject(error);
+
                 let switV = {}
 
                 varbinds.forEach(function (vb) {
-
-                    if(vb.oid == [1, 3, 6, 1, 2, 1, 1, 1, 0])
-                        switV['nome'] = vb.value;
-                    else if(vb.oid == [1, 3, 6, 1, 2, 1, 2, 2, 1, 8, 1001])
-                        switV['porta01'] = vb.value == 1 ? 'Up' : 'Down';
-                    else
-                        switV['porta02'] = vb.value == 1 ? 'Up' : 'Down';
-
+                    switV[oidsDict[vb.oid]] = typeof vb.value == 'number' ? (vb.value == 1 ? 'Up' : 'Down') : vb.value;
                 })
 
                 resolve(switV);
