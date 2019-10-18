@@ -5,12 +5,17 @@ const snmpget = require('./snmp-get');
 const mongoose = require("mongoose");
 const Swit = mongoose.model("Switch");
 
-module.exports = function(server) {
-    const io = require('socket.io')(server);
+// socket
+const socketio = require('socket.io');
 
-    cron.schedule("*/1 * * * *", () => {
-        const newSwitch = new Swit(snmpget.get());
-        newSwitch.save((err, swit) => {
+module.exports = function(server) {
+    const io = socketio(server);
+
+    cron.schedule("*/10 * * * * *", () => {
+	const switReceived = snmpget.get();
+	console.log(switReceived);
+        const newSwitch = new Swit(switReceived);
+        newSwitch.save((err, swit) => {	    
             io.emit("switchCurrent", swit);
         })
     })
